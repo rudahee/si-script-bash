@@ -1,0 +1,5 @@
+alumno01:alumno01:10001:10001:::/bin/bash
+alumno02:alumno02:10002:10001:::/bin/bash
+alumno03:alumno03:10003:10001:::/bin/bash
+alumno04:alumno04:10004:10001:::/bin/bash
+admin01:admin01:9999:10002:::/bin/bash

@@ -75,7 +75,8 @@ function comprobar_permisos {
     # id y consigo sus grupos, y busco las lineas en las que coincide con "administradores".
     # Si hay 1 coincidencia, devuelvo 1, sino, devuelo 0.
 
-    permisos=$(whoami | id -Gn | grep -c administradores)
+    nombre_usuario=$(whoami)
+    permisos=$(groups $nombre_usuario | grep -c administradores)
     if [ $permisos = 1 ]
     then
         return 1
@@ -163,17 +164,21 @@ function submenu_gestion_disco {
 }
 
 function tamano_directorio_home {
+    # Con ~ decimos que calcule el tamaño de: /home/$USER
     echo "# Calculando #"
     du -sh ~
 }
 
 function backup_home {
+    # Obtenemos la hora y comprobamos si existe la carpeta backups
     hora_actual=$(date +%d-%m-%y)
     if [ -d /backups ]
     then
+        # Si existe comprimimos y redirigimos los errores para no verlos.
         echo "Comprimiendo... Puede tardar unos minutos."
         sudo tar -czf /backups/backup-$hora_actual ~  2>> /dev/null
     else 
+        # Si no existe, la creamos y volvemos a llamar a esta misma funcion.
         echo "No existe la carpeta /backups. Estamos creadola"
         sudo mkdir /backups
         backup_home
