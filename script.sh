@@ -252,12 +252,11 @@ function agregar_contenido {
             fi
         else
             echo "Introduce una ruta absoluta."
-        fi
-        
-        # Para agregarlo lo abrimos con cat y redirigimos la salida estandar a un fichero (sin sobreescribir).
-        cat $ruta_agregar >> $ruta_receptor 
-
+        fi    
     done
+    
+    # Para agregarlo lo abrimos con cat y redirigimos la salida estandar a un fichero (sin sobreescribir).
+    cat $ruta_agregar >> $ruta_receptor 
 
 }
 
