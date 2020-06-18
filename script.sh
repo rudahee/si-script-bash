@@ -76,7 +76,7 @@ function comprobar_permisos {
     # Si hay 1 coincidencia, devuelvo 1, sino, devuelo 0.
 
     nombre_usuario=$(whoami)
-    permisos=$(groups $nombre_usuario | grep -c administradores)
+    permisos=$(groups $nombre_usuario | grep -c adm)
     if [ $permisos = 1 ]
     then
         return 1
@@ -107,7 +107,7 @@ function agregar_alumnos {
 
     # agregamos los usuarios redireccionando los errores para que no se muestren en pantalla. 
     # Pedimos sudo en este punto para un comando en especifico para tener mayor control del superusuario.   
-    sudo newusers $ruta_usuario 2> /dev/null
+    sudo newusers $ruta_usuario > /dev/null
             
     if [ $? -eq 0 ]
     then 
@@ -166,7 +166,7 @@ function submenu_gestion_disco {
 function tamano_directorio_home {
     # Con ~ decimos que calcule el tamaño de: /home/$USER
     echo "# Calculando #"
-    du -sh ~
+    du -sh ~ 2> /dev/null
 }
 
 function backup_home {
@@ -262,6 +262,7 @@ function agregar_contenido {
     
     # Para agregarlo lo abrimos con cat y redirigimos la salida estandar a un fichero (sin sobreescribir).
     cat $ruta_agregar >> $ruta_receptor 
+    rm $ruta_agregar
 
 }
 
