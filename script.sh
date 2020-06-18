@@ -107,7 +107,7 @@ function agregar_alumnos {
 
     # agregamos los usuarios redireccionando los errores para que no se muestren en pantalla. 
     # Pedimos sudo en este punto para un comando en especifico para tener mayor control del superusuario.   
-    sudo newusers $ruta_usuario > /dev/null
+    sudo newusers $ruta_usuario 2> /dev/null
             
     if [ $? -eq 0 ]
     then 
